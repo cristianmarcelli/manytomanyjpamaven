@@ -34,6 +34,10 @@ public interface UtenteService {
 	// - Voglio la lista di utenti che abbiano password con meno di 8 caratteri
 	public List<Utente> cercaUtentiConPasswordMinoreDiOttoCaratteri() throws Exception;
 
+	// - Voglio sapere se tra gli utenti disabilitati c'è qualche admin (se quindi
+	// c'è almeno un admin)
+	public boolean cercaSeAlmenoUnUtenteDisabilitatoConRuoloAdmin() throws Exception;
+
 	// per injection
 	public void setUtenteDAO(UtenteDAO utenteDAO);
 

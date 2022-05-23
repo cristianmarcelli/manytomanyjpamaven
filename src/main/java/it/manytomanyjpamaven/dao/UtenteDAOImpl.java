@@ -85,8 +85,18 @@ public class UtenteDAOImpl implements UtenteDAO {
 
 	@Override
 	public List<Utente> findUsersWhosePasswordHasLessThanEightCharacters() throws Exception {
-		return entityManager.createQuery("FROM Utente where length(password) < 8", Utente.class)
-				.getResultList();
+		return entityManager.createQuery("FROM Utente where length(password) < 8", Utente.class).getResultList();
+	}
+
+	@Override
+	public boolean checkSeAlmenoUnUtenteDisabilitatoAmministratore() throws Exception {
+
+		if (entityManager.createQuery(
+				"select count(u) from Utente u join u.ruoli r where r.descrizione = 'Administrator' and u.stato = 'DISABILITATO'",
+				Long.class).getSingleResult() >= 1) {
+			return true;
+		}
+		return false;
 	}
 
 }

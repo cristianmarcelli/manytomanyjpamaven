@@ -37,16 +37,19 @@ public class ManyToManyTest {
 //
 //			testRimuoviRuoloDaUtente(ruoloServiceInstance, utenteServiceInstance);
 //			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
-			
+
 //			testRimuoviUtente(ruoloServiceInstance, utenteServiceInstance);
-			
+
 //			testCercaUtentiCreatiAGiugnoDuemilaventuno(utenteServiceInstance);
 //			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
-			
+
 //			testContaQuantiUtentiAdmin(ruoloServiceInstance, utenteServiceInstance);
 //			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
-			
-			testCercaUtentiConPasswordMinoreDiOttoCaratteri(utenteServiceInstance);
+
+//			testCercaUtentiConPasswordMinoreDiOttoCaratteri(utenteServiceInstance);
+//			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
+
+			testCercaSeAlmenoUnUtenteDisabilitatoConRuoloAdmin(utenteServiceInstance);
 			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
 
 		} catch (Throwable e) {
@@ -152,7 +155,8 @@ public class ManyToManyTest {
 		if (!confermoRuoloPresente)
 			throw new RuntimeException("testRimuoviRuoloDaUtente fallito: utente e ruolo non associati ");
 
-		// ora provo la rimozione vera e propria ma poi forzo il caricamento per fare un confronto 'pulito'
+		// ora provo la rimozione vera e propria ma poi forzo il caricamento per fare un
+		// confronto 'pulito'
 		utenteServiceInstance.rimuoviRuoloDaUtente(utenteReloaded.getId(), ruoloEsistenteSuDb.getId());
 		utenteReloaded = utenteServiceInstance.caricaUtenteSingoloConRuoli(utenteNuovo.getId());
 		if (!utenteReloaded.getRuoli().isEmpty())
@@ -160,39 +164,47 @@ public class ManyToManyTest {
 
 		System.out.println(".......testRimuoviRuoloDaUtente fine: PASSED.............");
 	}
-	
+
 	private static void testRimuoviUtente(RuoloService ruoloServiceInstance, UtenteService utenteServiceInstance)
 			throws Exception {
 		System.out.println(".......testRimuoviUtente inizio.............");
-		
+
 		Utente utenteDaRimuovere = new Utente("aldo.manuzzi", "pwd@2", "aldo", "manuzzi", new Date());
 		utenteServiceInstance.inserisciNuovo(utenteDaRimuovere);
-		
+
 		if (utenteDaRimuovere.getId() == null)
 			throw new RuntimeException("testRimuoviUtente fallito: utente non inserito ");
-		
+
 		utenteServiceInstance.rimuovi(utenteDaRimuovere.getId());
-		
+
 		System.out.println(".......testRimuoviUtente fine: PASSED.............");
 	}
-	
+
 	private static void testCercaUtentiCreatiAGiugnoDuemilaventuno(UtenteService utenteServiceInstance)
 			throws Exception {
 		System.out.println(".......testCercaUtentiCreatiAGiugnoDuemilaventuno inizio.............");
-		
+
 		System.out.println(utenteServiceInstance.cercaUtentiCreatiAGiugnoDuemilaventuno());
-		
+
 		System.out.println(".......testCercaUtentiCreatiAGiugnoDuemilaventuno fine: PASSED.............");
 	}
-	
+
 	private static void testCercaUtentiConPasswordMinoreDiOttoCaratteri(UtenteService utenteServiceInstance)
 			throws Exception {
 		System.out.println(".......testCercaUtentiConPasswordMinoreDiOttoCaratteri inizio.............");
-		
+
 		System.out.println(utenteServiceInstance.cercaUtentiConPasswordMinoreDiOttoCaratteri());
-		
+
 		System.out.println(".......testCercaUtentiConPasswordMinoreDiOttoCaratteri fine: PASSED.............");
 	}
-	
+
+	private static void testCercaSeAlmenoUnUtenteDisabilitatoConRuoloAdmin(UtenteService utenteServiceInstance)
+			throws Exception {
+		System.out.println(".......testCercaSeAlmenoUnUtenteDisabilitatoConRuoloAdmin inizio.............");
+
+		System.out.println(utenteServiceInstance.cercaSeAlmenoUnUtenteDisabilitatoConRuoloAdmin());
+
+		System.out.println(".......testCercaSeAlmenoUnUtenteDisabilitatoConRuoloAdmin fine: PASSED.............");
+	}
 
 }

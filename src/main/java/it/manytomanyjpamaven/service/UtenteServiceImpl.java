@@ -288,4 +288,23 @@ public class UtenteServiceImpl implements UtenteService {
 		}
 	}
 
+	@Override
+	public boolean cercaSeAlmenoUnUtenteDisabilitatoConRuoloAdmin() throws Exception {
+
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+
+			utenteDAO.setEntityManager(entityManager);
+
+			return utenteDAO.checkSeAlmenoUnUtenteDisabilitatoAmministratore();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+
 }
