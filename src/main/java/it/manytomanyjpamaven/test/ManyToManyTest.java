@@ -1,6 +1,8 @@
 package it.manytomanyjpamaven.test;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import it.manytomanyjpamaven.dao.EntityManagerUtil;
 import it.manytomanyjpamaven.model.Ruolo;
@@ -36,7 +38,10 @@ public class ManyToManyTest {
 //			testRimuoviRuoloDaUtente(ruoloServiceInstance, utenteServiceInstance);
 //			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
 			
-			testRimuoviUtente(ruoloServiceInstance, utenteServiceInstance);
+//			testRimuoviUtente(ruoloServiceInstance, utenteServiceInstance);
+			
+			testCercaUtentiCreatiAGiugnoDuemilaventuno(utenteServiceInstance);
+			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
 
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -163,6 +168,21 @@ public class ManyToManyTest {
 		utenteServiceInstance.rimuovi(utenteDaRimuovere.getId());
 		
 		System.out.println(".......testRimuoviUtente fine: PASSED.............");
+	}
+	
+	private static void testCercaUtentiCreatiAGiugnoDuemilaventuno(UtenteService utenteServiceInstance)
+			throws Exception {
+		System.out.println(".......testCercaUtentiCreatiAGiugnoDuemilaventuno inizio.............");
+		
+		List<Utente> listaDiUtenti = utenteServiceInstance.listAll();
+		
+		if(listaDiUtenti.isEmpty()) {
+			throw new RuntimeException("Impossibile proseguire: lista di utenti vuota");
+		}
+		
+		System.out.println(utenteServiceInstance.cercaUtentiCreatiAGiugnoDuemilaventuno());
+		
+		System.out.println(".......testCercaUtentiCreatiAGiugnoDuemilaventuno fine: PASSED.............");
 	}
 
 }

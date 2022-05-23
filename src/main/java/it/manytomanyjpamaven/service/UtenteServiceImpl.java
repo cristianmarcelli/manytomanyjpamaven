@@ -234,4 +234,23 @@ public class UtenteServiceImpl implements UtenteService {
 
 	}
 
+	@Override
+	public List<Utente> cercaUtentiCreatiAGiugnoDuemilaventuno() throws Exception {
+
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+
+			utenteDAO.setEntityManager(entityManager);
+
+			return utenteDAO.findUsersCreatedAGiugnoDuemilaventuno();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+
 }

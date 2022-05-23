@@ -9,5 +9,8 @@ public interface UtenteDAO extends IBaseDAO<Utente> {
 	
 	public List<Utente> findAllByRuolo(Ruolo ruoloInput);
 	public Utente findByIdFetchingRuoli(Long id);
+	
+	//primo esercizio
+	public List<Utente> findUsersCreatedAGiugnoDuemilaventuno();
 
 }
