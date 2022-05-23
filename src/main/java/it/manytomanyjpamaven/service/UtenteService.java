@@ -31,6 +31,9 @@ public interface UtenteService {
 	// - Voglio il numero di utenti admin
 	public Long contaQuantiUtentiAdmin() throws Exception;
 
+	// - Voglio la lista di utenti che abbiano password con meno di 8 caratteri
+	public List<Utente> cercaUtentiConPasswordMinoreDiOttoCaratteri() throws Exception;
+
 	// per injection
 	public void setUtenteDAO(UtenteDAO utenteDAO);
 

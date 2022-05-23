@@ -43,7 +43,10 @@ public class ManyToManyTest {
 //			testCercaUtentiCreatiAGiugnoDuemilaventuno(utenteServiceInstance);
 //			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
 			
-			testContaQuantiUtentiAdmin(ruoloServiceInstance, utenteServiceInstance);
+//			testContaQuantiUtentiAdmin(ruoloServiceInstance, utenteServiceInstance);
+//			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
+			
+			testCercaUtentiConPasswordMinoreDiOttoCaratteri(utenteServiceInstance);
 			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
 
 		} catch (Throwable e) {
@@ -182,13 +185,13 @@ public class ManyToManyTest {
 		System.out.println(".......testCercaUtentiCreatiAGiugnoDuemilaventuno fine: PASSED.............");
 	}
 	
-	private static void testContaQuantiUtentiAdmin(RuoloService ruoloServiceInstance, UtenteService utenteServiceInstance)
+	private static void testCercaUtentiConPasswordMinoreDiOttoCaratteri(UtenteService utenteServiceInstance)
 			throws Exception {
-		System.out.println(".......testContaQuantiUtentiAdmin inizio.............");
+		System.out.println(".......testCercaUtentiConPasswordMinoreDiOttoCaratteri inizio.............");
 		
-		System.out.println(utenteServiceInstance.contaQuantiUtentiAdmin());
+		System.out.println(utenteServiceInstance.cercaUtentiConPasswordMinoreDiOttoCaratteri());
 		
-		System.out.println(".......testContaQuantiUtentiAdmin fine: PASSED.............");
+		System.out.println(".......testCercaUtentiConPasswordMinoreDiOttoCaratteri fine: PASSED.............");
 	}
 	
 
