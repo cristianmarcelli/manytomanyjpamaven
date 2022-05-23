@@ -18,9 +18,6 @@ public interface RuoloService {
 
 	public Ruolo cercaPerDescrizioneECodice(String descrizione, String codice) throws Exception;
 	
-	//- Voglio la lista di descrizioni distinte dei ruoli con utenti associati
-	//public List<String> listaDescrizioniDeiRuoliConUtentiAssociati() throws Exception;
-	
 	// per injection
 	public void setRuoloDAO(RuoloDAO ruoloDAO);
 }

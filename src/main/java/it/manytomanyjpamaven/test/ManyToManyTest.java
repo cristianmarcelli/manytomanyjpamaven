@@ -40,7 +40,10 @@ public class ManyToManyTest {
 			
 //			testRimuoviUtente(ruoloServiceInstance, utenteServiceInstance);
 			
-			testCercaUtentiCreatiAGiugnoDuemilaventuno(utenteServiceInstance);
+//			testCercaUtentiCreatiAGiugnoDuemilaventuno(utenteServiceInstance);
+//			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
+			
+			testContaQuantiUtentiAdmin(ruoloServiceInstance, utenteServiceInstance);
 			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
 
 		} catch (Throwable e) {
@@ -174,15 +177,19 @@ public class ManyToManyTest {
 			throws Exception {
 		System.out.println(".......testCercaUtentiCreatiAGiugnoDuemilaventuno inizio.............");
 		
-		List<Utente> listaDiUtenti = utenteServiceInstance.listAll();
-		
-		if(listaDiUtenti.isEmpty()) {
-			throw new RuntimeException("Impossibile proseguire: lista di utenti vuota");
-		}
-		
 		System.out.println(utenteServiceInstance.cercaUtentiCreatiAGiugnoDuemilaventuno());
 		
 		System.out.println(".......testCercaUtentiCreatiAGiugnoDuemilaventuno fine: PASSED.............");
 	}
+	
+	private static void testContaQuantiUtentiAdmin(RuoloService ruoloServiceInstance, UtenteService utenteServiceInstance)
+			throws Exception {
+		System.out.println(".......testContaQuantiUtentiAdmin inizio.............");
+		
+		System.out.println(utenteServiceInstance.contaQuantiUtentiAdmin());
+		
+		System.out.println(".......testContaQuantiUtentiAdmin fine: PASSED.............");
+	}
+	
 
 }

@@ -20,7 +20,7 @@ public class UtenteDAOImpl implements UtenteDAO {
 	public List<Utente> list() throws Exception {
 		// dopo la from bisogna specificare il nome dell'oggetto (lettera maiuscola) e
 		// non la tabella
-		return entityManager.createQuery("from Utente",Utente.class).getResultList();
+		return entityManager.createQuery("from Utente", Utente.class).getResultList();
 	}
 
 	@Override
@@ -56,21 +56,31 @@ public class UtenteDAOImpl implements UtenteDAO {
 	// questo metodo ci torna utile per capire se possiamo rimuovere un ruolo non
 	// essendo collegato ad un utente
 	public List<Utente> findAllByRuolo(Ruolo ruoloInput) {
-		TypedQuery<Utente> query = entityManager.createQuery("select u FROM Utente u join u.ruoli r where r = :ruolo",Utente.class);
+		TypedQuery<Utente> query = entityManager.createQuery("select u FROM Utente u join u.ruoli r where r = :ruolo",
+				Utente.class);
 		query.setParameter("ruolo", ruoloInput);
 		return query.getResultList();
 	}
 
 	@Override
 	public Utente findByIdFetchingRuoli(Long id) {
-		TypedQuery<Utente> query = entityManager.createQuery("select u FROM Utente u left join fetch u.ruoli r where u.id = :idUtente",Utente.class);
+		TypedQuery<Utente> query = entityManager
+				.createQuery("select u FROM Utente u left join fetch u.ruoli r where u.id = :idUtente", Utente.class);
 		query.setParameter("idUtente", id);
 		return query.getResultList().stream().findFirst().orElse(null);
 	}
 
 	@Override
 	public List<Utente> findUsersCreatedAGiugnoDuemilaventuno() {
-		return entityManager.createQuery("select u FROM Utente u where u.dateCreated like '2021-06%'", Utente.class).getResultList();
+		return entityManager.createQuery("select u FROM Utente u where u.dateCreated like '2021-06%'", Utente.class)
+				.getResultList();
+	}
+
+	@Override
+	public Long countAdminUsers() throws Exception {
+		TypedQuery<Long> query = entityManager.createQuery(
+				"select count(u) from Utente u join u.ruoli r where r.descrizione = 'Administrator'", Long.class);
+		return query.getSingleResult();
 	}
 
 }

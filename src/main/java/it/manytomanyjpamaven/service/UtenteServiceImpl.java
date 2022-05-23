@@ -253,4 +253,21 @@ public class UtenteServiceImpl implements UtenteService {
 		}
 	}
 
+	@Override
+	public Long contaQuantiUtentiAdmin() throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+
+			utenteDAO.setEntityManager(entityManager);
+
+			return utenteDAO.countAdminUsers();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+
 }
