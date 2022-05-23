@@ -49,7 +49,10 @@ public class ManyToManyTest {
 //			testCercaUtentiConPasswordMinoreDiOttoCaratteri(utenteServiceInstance);
 //			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
 
-			testCercaSeAlmenoUnUtenteDisabilitatoConRuoloAdmin(utenteServiceInstance);
+//			testCercaSeAlmenoUnUtenteDisabilitatoConRuoloAdmin(utenteServiceInstance);
+//			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
+
+			testListaDescrizioniDeiRuoliConUtentiAssociati(ruoloServiceInstance);
 			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
 
 		} catch (Throwable e) {
@@ -205,6 +208,15 @@ public class ManyToManyTest {
 		System.out.println(utenteServiceInstance.cercaSeAlmenoUnUtenteDisabilitatoConRuoloAdmin());
 
 		System.out.println(".......testCercaSeAlmenoUnUtenteDisabilitatoConRuoloAdmin fine: PASSED.............");
+	}
+
+	private static void testListaDescrizioniDeiRuoliConUtentiAssociati(RuoloService ruoloServiceInstance)
+			throws Exception {
+		System.out.println(".......testListaDescrizioniDeiRuoliConUtentiAssociati inizio.............");
+
+		System.out.println(ruoloServiceInstance.listaDescrizioniDeiRuoliConUtentiAssociati());
+
+		System.out.println(".......testListaDescrizioniDeiRuoliConUtentiAssociati fine: PASSED.............");
 	}
 
 }

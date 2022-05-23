@@ -3,6 +3,7 @@ package it.manytomanyjpamaven.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import it.manytomanyjpamaven.model.Ruolo;
@@ -59,6 +60,14 @@ public class RuoloDAOImpl implements RuoloDAO {
 				.setParameter(1, descrizione).setParameter(2, codice);
 
 		return query.getResultStream().findFirst().orElse(null);
+	}
+
+	@Override
+	public List<String> rolesDescriptionListWithAssociatedUsers() throws Exception {
+
+		Query queryDaRitornare = entityManager.createNativeQuery(
+				"select distinct r.descrizione from utente u, ruolo r, utente_ruolo x where u.id = x.utente_id and r.id = x.ruolo_id");
+		return queryDaRitornare.getResultList();
 	}
 
 }
